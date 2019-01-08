@@ -1,0 +1,41 @@
+<button class="btn btn-success" (click)="nuevaReceta()">Nueva receta</button>
+<table class="table table-bordered" *ngIf="recetas.length; else noHayRecetas">
+	<thead class="thead-dark">
+		<tr>
+			<th>Foto</th>
+			<th>Titulo</th>
+		</tr>
+	</thead>
+	<ng-container *ngFor="let receta of recetas">
+		<tr>
+			<td>
+				<img [src]="receta.foto" style="width:100%;max-width:220px">
+			</td>
+			<td>{{receta.titulo}}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button class="btn btn-outline-primary" (click)="receta.visualizar = !receta.visualizar">Detalle</button>
+				<div *ngIf="receta.visualizar">
+					<strong>
+						<em>Ingredientes</em>
+					</strong>
+					<p>{{receta.ingredientes}}</p>
+					<strong>
+						<em>Preparacion</em>
+					</strong>
+					<p>{{receta.preparacion}}</p>
+					<strong>
+						<em>Tiempo (min.)</em>
+					</strong>
+					<p>{{receta.tiempo}}</p>
+				</div>
+			</td>
+		</tr>
+	</ng-container>
+</table>
+<ng-template #noHayRecetas>
+	<h3>No hay recetas ingresadas</h3>
+</ng-template>
+
+<!-- <router-outlet></router-outlet> -->
